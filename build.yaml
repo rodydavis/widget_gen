@@ -1,0 +1,21 @@
+targets:
+  $default:
+    builders:
+      reflectable:
+        generate_for:
+          - lib/main.dart
+        options:
+          formatted: true
+      widget_gen:
+        enabled: true
+
+builders:
+  widget_gen:
+    target: ':widget_gen'
+    import: 'package:widget_gen/builder.dart'
+    builder_factories: ['widgetGenerator']
+    build_extensions: { '.dart': ['.store.g.part'] }
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ['source_gen|combining_builder']
+          
