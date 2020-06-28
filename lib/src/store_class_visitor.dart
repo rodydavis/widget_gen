@@ -14,6 +14,8 @@ import 'template/properties/function.dart';
 import 'template/properties/key.dart';
 import 'template/properties/list_widget.dart';
 import 'template/properties/matrix_4.dart';
+import 'template/properties/offset.dart';
+import 'template/properties/size.dart';
 import 'template/properties/supported.dart';
 import 'template/properties/widget.dart';
 import 'template/util.dart';
@@ -158,6 +160,7 @@ class StoreClassVisitor extends SimpleElementVisitor {
       _storeTemplate.settings.add(template);
       return;
     }
+
     if (element.type.toString() == 'EdgeInsets') {
       final template = EdgeInsetsOptionTemplate();
       final _widgetKey = const TypeChecker.fromRuntime(EdgeInsetsKey);
@@ -166,6 +169,34 @@ class StoreClassVisitor extends SimpleElementVisitor {
         template.key = annotation.getField('key').toStringValue();
         template.defaultValue =
             annotation.getField('defaultValue').toDoubleValue();
+      }
+      template.isPrivate = element.isPrivate;
+      template.propertyType = element.type.toString();
+      template.name = element.name;
+      _storeTemplate.settings.add(template);
+      return;
+    }
+
+    if (element.type.toString() == 'Offset') {
+      final template = OffsetOptionTemplate();
+      final _widgetKey = const TypeChecker.fromRuntime(OffsetKey);
+      if (_widgetKey.hasAnnotationOfExact(element, throwOnUnresolved: false)) {
+        final annotation = _widgetKey.firstAnnotationOfExact(element);
+        template.key = annotation.getField('key').toStringValue();
+      }
+      template.isPrivate = element.isPrivate;
+      template.propertyType = element.type.toString();
+      template.name = element.name;
+      _storeTemplate.settings.add(template);
+      return;
+    }
+
+    if (element.type.toString() == 'Size') {
+      final template = SizeOptionTemplate();
+      final _widgetKey = const TypeChecker.fromRuntime(SizeKey);
+      if (_widgetKey.hasAnnotationOfExact(element, throwOnUnresolved: false)) {
+        final annotation = _widgetKey.firstAnnotationOfExact(element);
+        template.key = annotation.getField('key').toStringValue();
       }
       template.isPrivate = element.isPrivate;
       template.propertyType = element.type.toString();

@@ -157,6 +157,22 @@ class EdgeInsetsKey {
   final String key;
 }
 
+class SizeKey {
+  const SizeKey({
+    this.key,
+  });
+
+  final String key;
+}
+
+class OffsetKey {
+  const OffsetKey({
+    this.key,
+  });
+
+  final String key;
+}
+
 class IconDataKey {
   const IconDataKey({
     this.defaultValue,
