@@ -11,10 +11,10 @@ class WidgetClass {
     this.allowTap = true,
   });
 
+  final bool allowTap;
   final bool animated;
   final int durationMilliseconds;
   final String name;
-  final bool allowTap;
   final double preferredHeight;
   final double preferredWidth;
 }
@@ -49,49 +49,16 @@ class FunctionKey {
 
 class EnumKey {
   const EnumKey({
+    this.propertyType,
     this.key,
     this.values,
     this.defaultValue,
   });
 
-  const EnumKey.alignment([String fallback = 'Alignment.center'])
-      : key = null,
-        defaultValue = fallback,
-        values = const [
-          'Alignment.bottomCenter',
-          'Alignment.bottomLeft',
-          'Alignment.bottomRight',
-          'Alignment.center',
-          'Alignment.centerLeft',
-          'Alignment.centerRight',
-          'Alignment.topCenter',
-          'Alignment.topLeft',
-          'Alignment.topRight',
-        ];
-
-  const EnumKey.fab([String fallback])
-      : key = null,
-        defaultValue = fallback,
-        values = const [
-          'FloatingActionButtonLocation.endDocked',
-          'FloatingActionButtonLocation.endFloat',
-          'FloatingActionButtonLocation.miniCenterDocked',
-          'FloatingActionButtonLocation.miniCenterFloat',
-          'FloatingActionButtonLocation.miniCenterTop',
-          'FloatingActionButtonLocation.miniEndDocked',
-          'FloatingActionButtonLocation.miniEndFloat',
-          'FloatingActionButtonLocation.miniEndTop',
-          'FloatingActionButtonLocation.miniStartDocked',
-          'FloatingActionButtonLocation.miniStartFloat',
-          'FloatingActionButtonLocation.miniStartTop',
-          'FloatingActionButtonLocation.startDocked',
-          'FloatingActionButtonLocation.startFloat',
-          'FloatingActionButtonLocation.startTop',
-        ];
-
   final String defaultValue;
   final String key;
-  final List<dynamic> values;
+  final String propertyType;
+  final List<String> values;
 }
 
 class ColorKey {

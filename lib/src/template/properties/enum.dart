@@ -19,7 +19,7 @@ class EnumOptionTemplate extends SettingsImpl {
     final sb = StringBuffer();
     sb.writeln("List<$propertyType> get ${name}Values => [");
     for (final item in values) {
-      sb.writeln("$propertyType.${_getEnumValueFromString(item)},");
+      sb.writeln("${_getEnumValueFromString(item)},");
     }
     sb.writeln("];");
     sb.writeln('');
@@ -28,9 +28,8 @@ class EnumOptionTemplate extends SettingsImpl {
     sb.writeln('{');
     sb.write('final _value = ');
     sb.writeln("params[${name}Key].toString().replaceAll('#', '');");
-    final _fallback = defaultValue == null
-        ? null
-        : ('$propertyType.' + _getEnumValueFromString(defaultValue));
+    final _fallback =
+        defaultValue == null ? null : _getEnumValueFromString(defaultValue);
     sb.writeln("""
     return ${name}Values.firstWhere(
       (element) => element.toString() == _value,
@@ -51,13 +50,10 @@ class EnumOptionTemplate extends SettingsImpl {
   String _getEnumValueFromString(item) {
     if (item == null) return '';
     String description = item.toString().replaceAll('#', '');
-    description = description.replaceAll("'", '');
-    if (!description.contains('(')) {
-      return describeEnum(item);
-    }
-    description = description.split('(')[1].split('=').first.trim();
-    description = description.replaceAll(')', '');
-    return describeEnum(description);
+    // if (!description.contains('(')) {
+    //   return "$propertyType." + describeEnum(item);
+    // }
+    return description;
   }
 }
 

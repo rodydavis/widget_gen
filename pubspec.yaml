@@ -1,6 +1,6 @@
 name: widget_gen
 description: A Flutter Code Gen Package Used to Generate Widgets for WidgetStudio
-version: 1.0.0+5
+version: 1.0.0+14
 homepage: https://github.com/rodydavis/widget_gen
 environment:
   sdk: ">=2.7.0 <3.0.0"

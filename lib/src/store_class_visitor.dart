@@ -83,9 +83,15 @@ class StoreClassVisitor extends SimpleElementVisitor {
       final template = EnumOptionTemplate()
         ..defaultValue = annotation.getField('defaultValue').toStringValue()
         ..key = annotation.getField('key').toStringValue()
-        ..values = annotation.getField('values').toListValue()
+        ..values = annotation
+            .getField('values')
+            .toListValue()
+            .map((e) => e.toStringValue())
+            .toList()
         ..isPrivate = element.isPrivate
-        ..propertyType = element.type.toString()
+        ..propertyType =
+            annotation?.getField('propertyType')?.toStringValue() ??
+                element.type.toString()
         ..name = element.name;
       _storeTemplate.settings.add(template);
       return;
