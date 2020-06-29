@@ -205,7 +205,7 @@ class StoreClassVisitor extends SimpleElementVisitor {
       return;
     }
 
-    if (element.type.toString() == 'List<Widget>') {
+    if (element.type.toString().contains('List')) {
       final template = ListWidgetOptionTemplate();
       final _widgetKey = const TypeChecker.fromRuntime(ListWidgetKey);
       if (_widgetKey.hasAnnotationOfExact(element, throwOnUnresolved: false)) {
