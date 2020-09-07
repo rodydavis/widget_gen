@@ -19,7 +19,7 @@ class SupportedOptionTemplate extends SettingsImpl {
     sb.write("if (params[${name}Key] != null) ");
     sb.writeln('{');
     sb.write('return ');
-    sb.write('$propertyType(params[${name}Key], widgetContext)');
+    sb.write('$propertyType(params[${name}Key], widgetContext, widgetRender)');
     sb.writeln(';');
     sb.writeln('}');
     sb.writeln("return null;");

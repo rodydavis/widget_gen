@@ -28,7 +28,7 @@ class WidgetOptionTemplate extends SettingsImpl {
     sb.write("if (params[${name}Key] != null) ");
     sb.writeln('{');
     sb.write('return ');
-    sb.write('widgetRender(params[${name}Key])');
+    sb.write('widgetRender(widgetContext, params[${name}Key])');
     sb.writeln(';');
     sb.writeln('}');
     sb.writeln("return null;");
@@ -72,11 +72,11 @@ class WidgetOptionTemplate extends SettingsImpl {
       """);
       if (fallback != null) {
         sb.write("""
-       ?? (widgetRender(json.decode(json.encode({
+       ?? (widgetRender(widgetContext, json.decode(json.encode({
         'id': '${shortid.generate()}',
         'name': '$fallback',
         'params': {},
-      }))) as WidgetBase).build(context)
+      })))).build(context)
       """);
       }
       sb.write("""
